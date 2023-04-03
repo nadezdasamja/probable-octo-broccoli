@@ -1,0 +1,106 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  padding: 0;
+  margin: 0;
+  background: #ddd7eb;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+#app {
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  font-size: 14px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  #app {
+    width: 100%;
+  }
+}
+
+/* Form */
+.form {
+  display: flex;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .form {
+    flex-direction: column;
+  }
+}
+
+input {
+  border: 2px solid #70cd87;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin: 3px 0;
+}
+/*css animation top page*/
+.wrapper {
+  width: 100%;
+  height: 24px;
+  background: #70cd87;
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapper div {
+  position: absolute;
+  filter: blur(60px);
+  opacity: 0.8;
+}
+
+.one {
+  border-radius: 100%;
+  width: 800px;
+  height: 800px;
+  background-color: #373372;
+  left: -50px;
+  top: -300px;
+  z-index: 3;
+  animation: fly 12s linear infinite;
+  transform: rotate(0) translate(80px) rotate(0);
+}
+
+.two {
+  width: 800px;
+  height: 600px;
+  background-color: #7c336c;
+  bottom: -30px;
+  left: -80px;
+}
+
+.three {
+  width: 600px;
+  height: 450px;
+  bottom: -80px;
+  right: -100px;
+  background-color: #b3588a;
+  animation: flyPlus 7s linear infinite;
+  transform: rotate(0) translate(100px) rotate(0);
+}
+
+@keyframes fly {
+  100% {
+    transform: rotate(1turn) translate(100px) rotate(-1turn);
+  }
+}
+
+@keyframes flyPlus {
+  100% {
+    transform: rotate(-1turn) translate(100px) rotate(1turn);
+  }
+}
