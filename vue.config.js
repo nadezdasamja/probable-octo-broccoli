@@ -4,4 +4,5 @@ module.exports = defineConfig({
   configureWebpack: {
     devtool: "source-map",
   },
+  publicPath: "/probable-octo-broccoli/",
 });
