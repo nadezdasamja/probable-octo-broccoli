@@ -26,7 +26,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2.4rem 0;
+  padding: 1.6rem 0;
   position: -webkit-sticky;
   position: sticky;
   top: 0;

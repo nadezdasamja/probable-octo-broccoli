@@ -123,7 +123,7 @@ figure {
 }
 
 .logo {
-  font-size: 20rem;
+  font-size: 22rem;
   font-weight: 500;
   padding-bottom: 10rem;
   margin: 0;
