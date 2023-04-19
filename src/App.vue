@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="inner">
     <nav class="navigation">
       <RouterLink to="/" active-class="active" class="nav-links"
         >All Posts</RouterLink
@@ -23,20 +23,25 @@ export default {
 
 <style scoped>
 .navigation {
-  padding: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2.4rem 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #ebd3f1;
+  z-index: 20;
 }
 .nav-links {
-  font-size: 20px;
+  font-size: 2.4rem;
   text-decoration: none;
-  font-weight: bold;
-  color: #050c4a;
+  font-weight: 300;
+  color: #222;
 }
 .nav-links:after {
   content: "/";
-  color: #70cd87;
+  color: magenta;
   margin: 0 10px;
 }
 .nav-links:last-child:after {
@@ -44,7 +49,8 @@ export default {
 }
 
 .active {
-  color: #70cd87;
+  color: magenta;
+  font-weight: 400;
 }
 
 .moveInUp-enter-active {

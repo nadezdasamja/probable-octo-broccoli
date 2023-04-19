@@ -1,52 +1,61 @@
 <template>
   <div class="posts">
-    <ul>
+    <div class="inner">
+      <h1 class="logo">dposts<span>...</span></h1>
+    </div>
+    <ul class="grid-directory">
       <li
-        @click="viewPostDetail(post.id)"
+        class="post-preview"
         v-bind:id="post.id"
         v-for="post in posts.data"
         :key="post.id"
       >
-        <div class="post-image-holder">
-          <p class="published-date">
-            {{ moment(post.publishDate).format("MMMM Do YYYY, h:mm:ss a") }}
-          </p>
-          <div class="post-tags-likes-holder">
-            <div class="likes">
-              <span class="like">
-                <span class="like-num">{{ post.likes }}</span>
-              </span>
-            </div>
-            <div>
-              <span class="tags" v-for="tags in post.tags" :key="tags"
-                >{{ tags }}
-              </span>
-            </div>
-          </div>
-
+        <figure class="post-image-holder" @click="viewPostDetail(post.id)">
           <img
             class="post-image"
             :src="post.image"
             :alt="post.text"
             :title="post.text"
           />
-        </div>
-        <div class="post-info">
-          <div class="owner">
-            <img
-              class="owner-img"
-              :src="post.owner.picture"
-              :alt="post.owner.firstName - post.owner.lastName"
-              :title="post.owner.firstName - post.owner.lastName"
-            />
-            {{ post.owner.title }}
-            {{ post.owner.firstName }}
-            {{ post.owner.lastName }}
-          </div>
+        </figure>
 
+        <div class="post-info-header">
+          <span class="tags" v-for="tags in post.tags" :key="tags">
+            {{ tags }}
+          </span>
           <h2 class="post-title">
             {{ post.text }}
           </h2>
+        </div>
+        <div class="post-info-details">
+          <div class="post-owner">
+            by:
+            <strong
+              >{{ post.owner.title }} {{ post.owner.firstName }}
+              {{ post.owner.lastName }}</strong
+            >
+          </div>
+          <div class="likes">
+            <span class="like">
+              <span class="like-num"
+                >likes: <strong>{{ post.likes }}</strong></span
+              >
+            </span>
+          </div>
+        </div>
+        <div class="post-info-footer" @click="viewPostDetail(post.id)">
+          <strong>View Post</strong>
+          <svg
+            width="24"
+            height="24"
+            xmlns="http://www.w3.org/2000/svg"
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+          >
+            <path
+              d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"
+            />
+          </svg>
         </div>
       </li>
     </ul>
@@ -107,53 +116,66 @@ export default {
 .posts {
   margin: 0 auto;
 }
-.post-info {
-  padding: 16px;
-}
-.post-title {
-  text-transform: capitalize;
-  color: #4e50e6;
-}
 
-.published-date {
-  border-left: 2px solid #70cd87;
-  padding-left: 10px;
-  margin-left: 15px;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
+figure {
+  margin: 0;
   padding: 0;
+}
+
+.logo {
+  font-size: 20rem;
+  font-weight: 500;
+  padding-bottom: 10rem;
+  margin: 0;
+}
+
+.logo span {
+  color: magenta;
+}
+
+.grid-directory {
+  --minthumb: 350px;
   display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(var(--minthumb), 1fr));
+  grid-auto-flow: row dense;
+  grid-gap: 24px;
+  padding-bottom: 30px;
+  list-style: none;
+  padding-left: 0;
 }
 
-@media only screen and (max-width: 768px) {
-  ul {
-    grid-template-columns: repeat(1, 1fr);
-    grid-auto-rows: auto;
-  }
+.post-preview {
+  background-color: #fff;
+  border-radius: 16px;
+}
+.post-info-header {
+  border-bottom: 2px solid #e9e9e9;
+  padding: clamp(20px, 3vw, 30px) clamp(10px, 3vw, 20px);
+  min-height: 175px;
+}
+.post-info-details {
+  border-bottom: 2px solid #e9e9e9;
+  padding: clamp(20px, 3vw, 30px) clamp(10px, 3vw, 20px);
+  display: flex;
+  justify-content: space-between;
+}
+.post-info-footer {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 500;
+  padding: clamp(20px, 3vw, 30px) clamp(10px, 3vw, 20px);
+}
 
-  .post-image {
-    height: 350px !important;
-  }
+.post-title {
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 400;
+  line-height: 1.5;
 }
-li:hover {
-  background-color: #050c4a;
-  color: #42b983;
-  transition: 2s all;
-}
+
 a {
   color: #42b983;
-}
-.owner-img {
-  width: 35px;
-  height: 35px;
-  filter: grayscale(100%);
 }
 
 .post-image-holder {
@@ -161,19 +183,21 @@ a {
 }
 .post-image {
   width: 100%;
-  height: 200px;
   object-fit: cover;
-  filter: grayscale(100%);
   transition: 0.5s all ease-in-out;
   cursor: pointer;
-  transform: scale(0.9);
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+}
+
+.post-image:hover {
+  filter: brightness(75%);
 }
 
 .tags {
-  color: #4e50e6;
-  font-weight: bold;
   font-size: 12px;
-  text-transform: uppercase;
+  text-transform: capitalize;
+  font-weight: 300;
 }
 
 .tags::after {
@@ -185,38 +209,7 @@ a {
   content: "";
 }
 
-.likes {
-  position: relative;
-}
-
-.like {
-  font-size: 12px;
-}
-.like::before,
-.like::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 10px;
-  height: 15px;
-  border-radius: 10px 10px 0 0;
-  background: #4e50e6;
-}
-
-.like::before {
-  left: 10px;
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
-
-.like::after {
-  left: 0;
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
-
 .like-num {
-  color: #4e50e6;
   font-size: 14px;
   margin-left: 20px;
 }
@@ -224,7 +217,6 @@ a {
 .post-tags-likes-holder {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
 }
 
 .owner {
