@@ -82,19 +82,19 @@ export default {
 
 .comment-block-single {
   display: flex;
-  background-color: #050c4a;
+  border: 2px dotted #d7eb;
   padding: 16px;
-  color: #fff;
+  border-radius: 1rem;
 }
 
 .owner-image {
   border-radius: 50%;
-  width: 50px;
+  width: 6rem;
 }
 
 .comment-message {
   font-size: 18px;
-  border-left: 1px solid #70cd87;
+  border-left: 2px solid #d7eb;
   padding-left: 20px;
 }
 

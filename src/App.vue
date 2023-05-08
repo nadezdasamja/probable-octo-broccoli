@@ -31,7 +31,7 @@ export default {
   position: sticky;
   top: 0;
   background-color: #ebd3f1;
-  z-index: 20;
+  z-index: 1000;
 }
 .nav-links {
   font-size: 2.4rem;
@@ -41,7 +41,7 @@ export default {
 }
 .nav-links:after {
   content: "/";
-  color: magenta;
+  color: #b266ff;
   margin: 0 10px;
 }
 .nav-links:last-child:after {
@@ -49,8 +49,7 @@ export default {
 }
 
 .active {
-  color: magenta;
-  font-weight: 400;
+  color: #b266ff;
 }
 
 .moveInUp-enter-active {
